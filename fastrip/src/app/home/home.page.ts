@@ -10,7 +10,6 @@ export class HomePage {
 
   constructor(private firestore: FirestoreService) {}
 
-
   getDriver() {
 this.firestore.getCollection();
   }
