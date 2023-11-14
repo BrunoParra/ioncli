@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../services/firestore.service';
+import { Chofer } from '../models/models';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,9 +8,44 @@ import { Router } from '@angular/router';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage{
 
-  constructor(private firestore: FirestoreService, private router: Router) {}
+  amanda: Chofer = {
+    nombre: 'Amanda',
+    apepat: 'Gonzales',
+    apemat: 'Carrasco',
+    rut: '21554091k',
+    edad: 21,
+    genero: 'M',
+    patente: 'GISP45',
+    fabCoche: 'Nissan',
+
+  }
+
+  conductores: Chofer [] = [
+    {
+      nombre: 'Amanda',
+      apepat: 'Gonzales',
+      apemat: 'Carrasco',
+      rut: '21554091k',
+      edad: 21,
+      genero: 'M',
+      patente: 'GISP45',
+      fabCoche: 'Nissan',
+  
+    }
+  ]
+
+  //ESTO SIRVE PARA HACER USO DE SERVICIO DE DB
+  constructor(private firestore: FirestoreService, private router: Router) {
+    console.log('constructor se ejecuta antes que funcion getDriver ->') ;
+    this.conductores.forEach(choferes => [
+      console.log('La edad es -> ', choferes.edad)
+    ] );
+    this.getDriver();
+
+
+  }
 
   login() {
 
@@ -24,7 +60,16 @@ export class HomePage {
   ngOnInit() {
   }
 
+
+  crearNuevoChofer(){
+    
+    this.firestore.createDoc()
+
+  }
+
+
+
   getDriver() {
-this.firestore.getCollection();
+  this.firestore.getCollection();
   }
 }

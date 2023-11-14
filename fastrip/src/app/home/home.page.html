@@ -33,3 +33,14 @@
   <ion-content class="ion-padding">
   </ion-content>
 </div>
+
+
+<ion-content>
+  <div *ngFor="let chofer of conductores">
+    <h3>Nombre: {{chofer.nombre}}</h3>
+    <h3>Apellido Paterno: {{chofer.apepat}}</h3>
+    <h3>Apellido Materno: {{chofer.apemat}}</h3>
+    <h3>Edad: {{chofer.edad}}</h3>
+
+  </div>
+</ion-content>
