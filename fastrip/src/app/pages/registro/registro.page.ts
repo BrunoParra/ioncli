@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AlertController } from '@ionic/angular';
-import { RegistroserviceService, Usuario } from 'src/app/service/registroservice.service';
+import { RegistroserviceService, Usuario } from '../../services/registroservice.service';
 import { ToastController } from '@ionic/angular';
 
 import {
@@ -12,8 +12,8 @@ import {
 
 @Component({
   selector: 'app-registro',
-  templateUrl: './registro.page.html',
-  styleUrls: ['./registro.page.scss'],
+  templateUrl: '/registro.page.html',
+  styleUrls: ['/registro.page.scss'],
 })
 export class RegistroPage implements OnInit {
 
@@ -30,5 +30,9 @@ constructor(private registroService: RegistroserviceService,
                 'password' :new FormControl("", Validators.required),
                 'confirmaPass':new FormControl("", Validators.required)
               });
+            }
+
+            ngOnInit(): void {
+              
             }
 }

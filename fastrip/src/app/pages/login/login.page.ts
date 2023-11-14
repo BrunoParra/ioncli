@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
-import { RegistroserviceService, Usuario } from 'src/app/services/registroservice.service';
+import { RegistroserviceService, Usuario } from '../../services/registroservice.service';
 import {
   FormGroup,
   FormControl,
