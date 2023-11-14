@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FirestoreService } from '../services/firestore.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,8 +9,19 @@ import { FirestoreService } from '../services/firestore.service';
 })
 export class HomePage {
 
-  constructor(private firestore: FirestoreService) {
-    console.log("constructor se ejecuta antes que funcion getDriver")
+  constructor(private firestore: FirestoreService, private router: Router) {}
+
+  login() {
+
+    this.router.navigate(['/login'])
+  }
+
+  logout(){
+
+    this.router.navigate(['/logout'])
+  }
+
+  ngOnInit() {
   }
 
   getDriver() {
