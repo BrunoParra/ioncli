@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../services/firestore.service';
 import { User } from '../models/models';
 import { Router } from '@angular/router';
+import { InteractionService } from '../services/interaction.service';
 
 @Component({
   selector: 'app-home',
@@ -29,7 +30,9 @@ export class HomePage{
   ]
 
   //ESTO SIRVE PARA HACER USO DE SERVICIO DE DB
-  constructor(private firestore: FirestoreService, private router: Router) {
+  constructor(private firestore: FirestoreService, 
+            private router: Router,
+            private interaction: InteractionService) {
     console.log('constructor se ejecuta antes que funcion getDriver ->') ;
     //CON ESTE FOREACH TRAEMOS CADA USUARIO EN LA COLECCION DE "USUARIOS" QUE ESTA ARRIBA
     this.usuarios.forEach(usuario => [
@@ -58,6 +61,9 @@ export class HomePage{
 //AQUI ESTAN LOS DATOS JUNTO CON LA FUNCION PARA ENVIAR DATA POR EL MOMENTO NO AUTO RELLENADA A FIREBASE.
 //LA ESTRUCTURA SE ENCUENTRA EN models.ts
   crearNuevoUsuario(){
+
+    this.interaction.presentLoading('Guardando. Porfavor Espere...');
+
     const usuario: User = {
     nombre: 'Florencia',
     apepat: 'Correa',
@@ -77,7 +83,10 @@ export class HomePage{
     console.log('Se envio info a firebase')
     const path = 'Usuarios';
     this.firestore.createUsr(usuario, path, 'testeo').then( () => {
-      console.log('Firebase devolvio token de respuesta. Guardado con exito')
+      console.log('Firebase devolvio token de respuesta.');
+      //con solo esto podemos hacer un pop up con el mensaje que queramos solo con agregar al constructor lo que requiere toast
+      this.interaction.closeLoading();
+      this.interaction.presentToast("Guardado con Exito");
     });
 
   }
