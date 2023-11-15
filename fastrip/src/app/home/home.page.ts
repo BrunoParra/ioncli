@@ -74,9 +74,11 @@ export class HomePage{
                                         (path = a que documento de firebase se va a ir)
                                         (id = vajo que nombre la coleccion se llamara)
       */
-    const path = 'Usuarios';
-    this.firestore.createUsr(usuario, path, 'testeo');
     console.log('Se envio info a firebase')
+    const path = 'Usuarios';
+    this.firestore.createUsr(usuario, path, 'testeo').then( () => {
+      console.log('Firebase devolvio token de respuesta. Guardado con exito')
+    });
 
   }
 
