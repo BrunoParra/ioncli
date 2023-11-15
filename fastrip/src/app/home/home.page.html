@@ -36,11 +36,20 @@
 
 
 <ion-content>
-  <div *ngFor="let chofer of conductores">
+  <!--
+    LO QUE ESTA EN ESTA PARTE ES UN EJEMPLO PARA PODER TRAER LA API DE FIREBASE A LA PAGINA CON UN FOREACH QUE ESTA EN home.page.ts
+    <div *ngFor="let chofer of conductores">
     <h3>Nombre: {{chofer.nombre}}</h3>
     <h3>Apellido Paterno: {{chofer.apepat}}</h3>
     <h3>Apellido Materno: {{chofer.apemat}}</h3>
     <h3>Edad: {{chofer.edad}}</h3>
 
   </div>
+
+  NO TOCAR ESTO. esto es el boton que llamara a la funcion para enviar los datos que estan en home.page.ts bajo la estructura de models.ts-->
+  <ion-button (click)="crearNuevoUsuario()">
+    crear
+  </ion-button>
+
+
 </ion-content>

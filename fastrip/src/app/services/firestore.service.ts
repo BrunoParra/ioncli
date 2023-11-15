@@ -11,13 +11,15 @@ export class FirestoreService {
 
 
 
-
-  createDoc(data: any, path: string, id: string){
+// CON ESTO AGARRAMOS LOS DATOS QUE NOSOTROS CREAMOS PARA DARSELOS A FIREBASE CON JSON Y QUE SE GUARDE BAJO SUS METODOS DE DOCUMENTO
+  createUsr(data: any, path: string, id: string){
 
     const collection= this.firestore.collection(path);
     return collection.doc(id).set(data);
   }
 
+
+//Traemos una coleccion de firebase en este caso 'Driver' con el res que es nuestra funcion void de resultado
   getCollection() {
 
     console.log('estoy por leer una collection');
