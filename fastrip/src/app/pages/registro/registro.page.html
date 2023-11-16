@@ -3,51 +3,92 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Registro</ion-title>
+    <ion-title>Crea tu Cuenta</ion-title>
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Registro</ion-card-title>
-    </ion-card-header>
-  <ion-card-content>
-   <form [formGroup] = "formularioRegistro" (keyup.enter)="CrearUsuario()">
-    <ion-item>
-      <ion-label position="floating">Nombre</ion-label>
-      <ion-input type="text" formControlName="nombre"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Correo</ion-label>
-      <ion-input type="text" formControlName="correo"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" formControlName="password"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Confirma Password</ion-label>
-      <ion-input type="password" formControlName="confirmaPass"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-radio-group value="rol" formControlName="rol">
-        <ion-item>
-          <ion-label>Conductor</ion-label>
-          <ion-radio slot="end" value="conductor"></ion-radio>
-        </ion-item>
-    
-        <ion-item>
-          <ion-label>Pasajero</ion-label>
-          <ion-radio slot="end" value="pasajero"></ion-radio>
-        </ion-item>
-      </ion-radio-group>
-    </ion-item>
-    <br>
-    <ion-button (click)="CrearUsuario()" expand="block" fill="outline" shape="round" routerLink="/login">
-      Registrarse
-    </ion-button>
-   </form>
-  </ion-card-content>
-  </ion-card>
+  <div class="centro">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Registro</ion-card-title>
+      </ion-card-header>
+    <ion-card-content>
+     <!--<form [formGroup] = "formularioRegistro" (keyup.enter)="CrearUsuario()">-->
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input type="text" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Primer Apellido</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Segundo Apellido</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Rut</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Ingrese su Edad</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-card-content>
+        <ion-label>Indique su genero</ion-label>
+      <ion-item>
+        <ion-radio-group value="rol">
+          <ion-item>
+            <ion-label>Femenino</ion-label>
+            <ion-radio slot="end" value="F"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Masculino</ion-label>
+            <ion-radio slot="end" value="M"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-item>
+    </ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Correo electronico</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="contraseña"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Confirma Contraseña</ion-label>
+        <ion-input type="contraseña"></ion-input>
+      </ion-item>
+      <ion-card-content>
+        <ion-label>Indique si quiere tambien ser conductor</ion-label>
+      <ion-item>
+        <ion-radio-group value="rol">
+          <ion-item>
+            <ion-label>Conductor</ion-label>
+            <ion-radio slot="end" value="conductor"></ion-radio>
+          </ion-item>
+      
+          <ion-item>
+            <ion-label>Solo estudiante</ion-label>
+            <ion-radio slot="end" value="pasajero"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-item>
+    </ion-card-content>
+      <br>
+      <ion-button (click)="CrearUsuario()" expand="block" fill="outline" shape="round" routerLink="/login">
+        Registrate!
+      </ion-button>
+     <!--</form> -->
+    </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

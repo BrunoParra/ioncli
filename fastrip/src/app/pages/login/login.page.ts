@@ -24,6 +24,7 @@ export class LoginPage{
       edad: 21,
       genero: 'M',
       correo: '',
+      contraseña: '',
       chofer:{
       patente: 'GISP45',
       fabCoche: 'Nissan',
@@ -70,8 +71,8 @@ export class LoginPage{
     rut: '22.491.351-k',
     edad: 18,
     genero: 'M',
-    correo: 'flocor@gmail.com'
-    
+    correo: 'flocor@gmail.com',
+    contraseña: 'contraseña',
     }
     /*CON ESTA MAMADA HACEMOS EL ROUTEO A FIREBASE DANDOLE UN COMBRE AL 'DOCUMENTO' SI NO EXISTE SE CREARA AUTOMATICO
       LUEGO SE HACE LA RUTA QUE VA ASI. (data: any, path: string, id: string)

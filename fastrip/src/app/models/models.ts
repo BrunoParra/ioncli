@@ -6,6 +6,7 @@ export interface User {
     rut: string;
     edad: number;
     genero: 'M'|'F';
+    contraseña: string;
     correo: string;
     //lo que sigue es lo opcional
     chofer?: {
