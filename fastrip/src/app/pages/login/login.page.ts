@@ -1,75 +1,98 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
-import { NavController } from '@ionic/angular';
-import { RegistroserviceService, Usuario } from '../../services/registroservice.service';
-import {
-  FormGroup,
-  FormControl,
-  Validators,
-  FormBuilder
-} from '@angular/forms';
+import { FirestoreService } from '../../services/firestore.service';
+import { User } from '../../models/models';
+import { Router } from '@angular/router';
+import { InteractionService } from '../../services/interaction.service';
+import { MenuController } from '@ionic/angular';
+import { RegistroserviceService } from '../../services/registroservice.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage{
 
-  formularioLogin : FormGroup;
-  usuarios: any = []  
+//ESTO HACE USO DEL FOR EACH QUE ESTA JUSTO ABAJO junto con el modelo que esta en models.ts
+//Esto es independiente de firebase. esto se almaceno en local.
+  usuarios: User [] = [
+    {
+      nombre: 'Amanda',
+      apepat: 'Gonzales',
+      apemat: 'Carrasco',
+      rut: '21554091k',
+      edad: 21,
+      genero: 'M',
+      correo: '',
+      chofer:{
+      patente: 'GISP45',
+      fabCoche: 'Nissan',
+      }
+    }
+  ]
 
-  constructor( private alertController: AlertController,
-               private navController: NavController,
-               private registroService: RegistroserviceService,
-               private fb: FormBuilder) {
-                this.formularioLogin = this.fb.group({
-                  'correo': new FormControl("",[Validators.email, Validators.required]),
-                  'password': new FormControl("",Validators.required),
-                })
-               }
-  
-  ngOnInit() {
+  usuario: any
+
+  //ESTO SIRVE PARA HACER USO DE SERVICIO DE DB
+  constructor(private firestore: FirestoreService, 
+            private router: Router,
+            private interaction: InteractionService,
+            private menuController: MenuController,
+            private serviceRegistro: RegistroserviceService) {
+    console.log('constructor se ejecuta antes que funcion getDriver ->') ;
+    //CON ESTE FOREACH TRAEMOS CADA USUARIO EN LA COLECCION DE "USUARIOS" QUE ESTA ARRIBA
+    this.usuarios.forEach(usuario => [
+      console.log('La edad es -> ', usuario.edad)
+    ] );
+    //ESTO ES PARA HACER USO DE LA FUNCION GetDriver DE MANERA AUTOMATICA Y QUE SE REFLEJE EN LA CONSOLA
+    this.getDriver();
+
   }
 
-  async Ingresar(){
-    var f = this.formularioLogin.value;
-    var a = 0;
-    this.registroService.getUsuarios().then(datos=>{
-      this.usuarios=datos;
-      if (datos.length==0)
-      {
-        return this.usuarios;
-      }
-    if(this.formularioLogin.valid){
-      for (let obj of this.usuarios){
-        if (obj.correoUsuario == f.correo && obj.passUsuario == f.password){
-          a=1;
-          console.log('ingresado');
-          localStorage.setItem('ingresado', 'true');
-          localStorage.setItem('useremail', obj.correoUsuario);
-          this.navController.navigateRoot('home');
-          return;
-        }
-        }
-      
-      console.log(a);
-      if (a==0){
-        this.alertMsg();
-      }
-    }else{
-      console.log('alo kike')
-    }
-  });
-}
+  async ngOnInit() {
+    this.usuario = await this.serviceRegistro.obtenerUsuario()
+  }
 
-  async alertMsg(){
-    const alert = await this.alertController.create({
-      header: 'Error..',
-      message:'Los datos ingresados no son correctos',
-      buttons: ['Aceptar'],
+  mostrarMenu(){
+    this.menuController.open('first');
+  }
+
+//AQUI ESTAN LOS DATOS JUNTO CON LA FUNCION PARA ENVIAR DATA POR EL MOMENTO NO AUTO RELLENADA A FIREBASE.
+//LA ESTRUCTURA SE ENCUENTRA EN models.ts
+  crearNuevoUsuario(){
+
+    this.interaction.presentLoading('Guardando. Porfavor Espere...');
+
+    const usuario: User = {
+    nombre: 'Florencia',
+    apepat: 'Correa',
+    apemat: 'Parraguez',
+    rut: '22.491.351-k',
+    edad: 18,
+    genero: 'M',
+    correo: 'flocor@gmail.com'
+    
+    }
+    /*CON ESTA MAMADA HACEMOS EL ROUTEO A FIREBASE DANDOLE UN COMBRE AL 'DOCUMENTO' SI NO EXISTE SE CREARA AUTOMATICO
+      LUEGO SE HACE LA RUTA QUE VA ASI. (data: any, path: string, id: string)
+      que te lo tradusco va asi:        (data = usuario es de tipo User que replica la estructura de la interface que esta en models.ts)
+                                        (path = a que documento de firebase se va a ir)
+                                        (id = vajo que nombre la coleccion se llamara)
+      */
+    console.log('Se envio info a firebase')
+    const path = 'Usuarios';
+    this.firestore.createUsr(usuario, path, 'testeo').then( () => {
+      console.log('Firebase devolvio token de respuesta.');
+      //con solo esto podemos hacer un pop up con el mensaje que queramos solo con agregar al constructor lo que requiere toast
+      this.interaction.closeLoading();
+      this.interaction.presentToast("Guardado con Exito");
     });
-    await alert.present();
-    return;
+
+  }
+
+
+//HACE USO CONTROLADO DE LA FUNCION DE TRAER COLECCION DE FIREBASE
+  getDriver() {
+  this.firestore.getCollection();
   }
 }
