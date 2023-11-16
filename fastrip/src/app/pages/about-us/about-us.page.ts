@@ -10,16 +10,6 @@ export class AboutUsPage implements OnInit {
 
   constructor(private router: Router) { }
 
-  login() {
-
-    this.router.navigate(['/login'])
-  }
-
-  logout(){
-
-    this.router.navigate(['/logout'])
-  }
-
   ngOnInit() {
   }
 }

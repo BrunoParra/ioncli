@@ -3,6 +3,8 @@ import { FirestoreService } from '../services/firestore.service';
 import { User } from '../models/models';
 import { Router } from '@angular/router';
 import { InteractionService } from '../services/interaction.service';
+import { MenuController } from '@ionic/angular';
+import { RegistroserviceService } from '../services/registroservice.service';
 
 @Component({
   selector: 'app-home',
@@ -29,10 +31,14 @@ export class HomePage{
     }
   ]
 
+  usuario: any
+
   //ESTO SIRVE PARA HACER USO DE SERVICIO DE DB
   constructor(private firestore: FirestoreService, 
             private router: Router,
-            private interaction: InteractionService) {
+            private interaction: InteractionService,
+            private menuController: MenuController,
+            private serviceRegistro: RegistroserviceService) {
     console.log('constructor se ejecuta antes que funcion getDriver ->') ;
     //CON ESTE FOREACH TRAEMOS CADA USUARIO EN LA COLECCION DE "USUARIOS" QUE ESTA ARRIBA
     this.usuarios.forEach(usuario => [
@@ -41,22 +47,15 @@ export class HomePage{
     //ESTO ES PARA HACER USO DE LA FUNCION GetDriver DE MANERA AUTOMATICA Y QUE SE REFLEJE EN LA CONSOLA
     this.getDriver();
 
-
   }
 
-  login() {
-
-    this.router.navigate(['/login'])
+  async ngOnInit() {
+    this.usuario = await this.serviceRegistro.obtenerUsuario()
   }
 
-  logout(){
-
-    this.router.navigate(['/logout'])
+  mostrarMenu(){
+    this.menuController.open('first');
   }
-
-  ngOnInit() {
-  }
-
 
 //AQUI ESTAN LOS DATOS JUNTO CON LA FUNCION PARA ENVIAR DATA POR EL MOMENTO NO AUTO RELLENADA A FIREBASE.
 //LA ESTRUCTURA SE ENCUENTRA EN models.ts

@@ -6,6 +6,7 @@ export interface Usuario{
   correoUsuario: string;
   passUsuario: string;
   repassUsuario: string;
+  rol: string;
 }
 
 const USERS_KEY = 'my-usuarios';
@@ -40,5 +41,18 @@ export class RegistroserviceService {
 
   async getUsuarios(): Promise<Usuario[]>{
     return this.storage.get(USERS_KEY);
+  }
+
+  async obtenerUsuario(){
+    const email = localStorage.getItem('useremail')
+    const usuarios = await this.getUsuarios()
+    const encontrado = usuarios.find(usuario => usuario.correoUsuario === email);
+    console.log(encontrado)
+    return encontrado
+  }
+
+  async logOut(){
+    localStorage.removeItem('ingresado');
+    localStorage.removeItem('useremail');
   }
 }

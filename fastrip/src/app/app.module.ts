@@ -11,7 +11,8 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-
+import { IonicStorageModule } from '@ionic/storage-angular';
+import { Drivers } from '@ionic/storage'
 
 
 const routes: AppRoutingModule = [
@@ -31,7 +32,13 @@ const routes: AppRoutingModule = [
     AppRoutingModule, 
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    IonicStorageModule.forRoot(
+      {
+        name: 'mydb',
+        driverOrder: [Drivers.IndexedDB, Drivers.LocalStorage]
+      }
+    ),
    ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

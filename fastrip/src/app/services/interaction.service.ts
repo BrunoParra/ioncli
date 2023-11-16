@@ -23,7 +23,7 @@ export class InteractionService {
 
 
   /*esto es para que se muestre un bloqueador de pantalla que nos 
-  muestra una rueda de carga junto con su funcion para que se valla*/
+  muestra una rueda de carga junto con su funcion para que se vaya*/
   async presentLoading(mensaje: string){
     this.loading = await this.loadingController.create({
       cssClass: 'mi-mensaje-xd',

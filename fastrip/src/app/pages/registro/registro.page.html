@@ -28,7 +28,20 @@
     </ion-item>
     <ion-item>
       <ion-label position="floating">Confirma Password</ion-label>
-      <ion-input type="password" formControlName="ConfirmaPass"></ion-input>
+      <ion-input type="password" formControlName="confirmaPass"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-radio-group value="rol" formControlName="rol">
+        <ion-item>
+          <ion-label>Conductor</ion-label>
+          <ion-radio slot="end" value="conductor"></ion-radio>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Pasajero</ion-label>
+          <ion-radio slot="end" value="pasajero"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
     </ion-item>
     <br>
     <ion-button (click)="CrearUsuario()" expand="block" fill="outline" shape="round" routerLink="/login">
