@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { RegistroserviceService } from 'src/app/services/registroservice.service';
 
 @Component({
   selector: 'app-about-us',
@@ -8,8 +9,14 @@ import { Router } from '@angular/router';
 })
 export class AboutUsPage implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private serviceRegistro: RegistroserviceService) { }
 
   ngOnInit() {
+  }
+
+  logOut(){
+    this.serviceRegistro.logOut()
+    this.router.navigate(['/home']);
   }
 }

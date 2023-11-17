@@ -1,19 +1,37 @@
-<ion-menu contentId="main-content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Menú</ion-title>
+<ion-menu side="start" menuId="first" contentId="main-content">
+  <ion-header [translucent]="true">
+    <ion-toolbar color="primary">
+    
+      <ion-title class="ion-padding">Menú</ion-title>
+      <ion-buttons slot="end">
+        <ion-button>
+          <ion-icon  slot="icon-only" name="arrow-back"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
     <ion-list>
-      <ion-item routerLink="/home">Inicio</ion-item>
-      <ion-item routerLink="/about">Acerca de</ion-item>
+      <ion-item routerLink="/inicio" detail="true">
+        <ion-icon name="car-outline" color="primary" ></ion-icon>
+        
+        <ion-item>Inicio</ion-item>
+
+      </ion-item>
+      <ion-item routerLink="/about" detail="true">
+        <ion-icon name="sunny-outline" color="primary" ></ion-icon>
+        
+        <ion-item>Acerca De...</ion-item>
+        
+      </ion-item>
     </ion-list>
+    <ion-item (click)="logOut()">Cerrar Sesión</ion-item>
   </ion-content>
 </ion-menu>
 <div class="ion-page" id="main-content">
-  <ion-header>
-    <ion-toolbar>
+  <ion-header >
+    <ion-toolbar color="success">
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>

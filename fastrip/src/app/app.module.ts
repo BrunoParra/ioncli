@@ -19,7 +19,7 @@ const routes: AppRoutingModule = [
   { path: '', redirectTo: '/pages/login', pathMatch: 'full' },
   { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomePageModule) },
   { path: 'about', loadChildren: () => import('./pages/about-us/about-us.module').then(m => m.AboutUsPageModule) },
-  { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule) },
+  { path: 'login', loadChildren: () => import('./pages/inicio/inicio.module').then(m => m.InicioPageModule) },
   { path: 'registro', loadChildren: () => import('./pages/registro/registro.module').then(m => m.RegistroPageModule) },
 
 ];

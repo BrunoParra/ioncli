@@ -97,4 +97,8 @@ export class InicioPage{
   this.firestore.getCollection();
   }
 
+  logOut(){
+    this.serviceRegistro.logOut()
+    this.router.navigate(['/home']);
+  }
 }
