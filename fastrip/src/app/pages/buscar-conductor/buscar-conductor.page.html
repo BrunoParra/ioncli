@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Datos del Viaje</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngFor="let viaje of viajes">
+    <img src="./assets/logo.png" alt="">
+    <div class="container-input-sup">
+      <div class="simbolo">
+        <div class="linea"></div>
+      </div>
+    </div>
+
+    <div class="container-input-inf">
+      <ion-item fill="outline">
+        <ion-label>Patente:{{viaje.patente}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Destino:{{viaje.destino.direccion}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Valor:{{viaje.valorViaje}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>N° Pasajero:{{viaje.cantidadPasajeros}}</ion-label>
+      </ion-item>
+      <ion-button mode="ios" expand="block" color="tertiary" (click)="seleccionarViaje(viaje.id!)">Seleccionar Viaje</ion-button>
+    </div>
+  </div>
+</ion-content>
+

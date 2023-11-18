@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   { 
@@ -22,6 +22,22 @@ const routes: Routes = [
   { 
     path: 'registro',
      loadChildren: () => import('./pages/registro/registro.module').then(m => m.RegistroPageModule) 
+  },
+  {
+    path: 'form-prestar',
+    loadChildren: () => import('./pages/form-prestar/form-prestar.module').then( m => m.FormPrestarPageModule)
+  },
+  {
+    path: 'esperando-pasajero',
+    loadChildren: () => import('./pages/esperando-pasajeros/esperando-pasajeros.module').then( m => m.EsperandoPasajeroPageModule)
+  },
+  {
+    path: 'viaje',
+    loadChildren: () => import('./pages/viaje/viaje.module').then( m => m.ViajePageModule)
+  },
+  {
+    path: 'buscar-conductor',
+    loadChildren: () => import('./pages/buscar-conductor/buscar-conductor.module').then( m => m.BuscarConductorPageModule)
   },
   
 ];

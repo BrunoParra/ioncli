@@ -29,9 +29,12 @@
     </ion-toolbar>
   </ion-header>
   <ion-content *ngIf="usuario" class="ion-padding">
-    <ion-button *ngIf="usuario.rol=='pasajero'">Buscar un Conductor</ion-button>
-    <ion-button *ngIf="usuario.rol=='conductor'">Ingresar Vehiculo</ion-button>
+    <div class="container">
+      <ion-button *ngIf="!usuario.conductor" routerLink="/buscar-conductor">Buscar un Conductor</ion-button>
+      <ion-button *ngIf="usuario.conductor" routerLink="/form-prestar">Ingresar datos del viaje</ion-button>
+    </div>
   </ion-content>
+  
 </div>
 
 <!--

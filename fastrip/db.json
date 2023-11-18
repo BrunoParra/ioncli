@@ -1,0 +1,54 @@
+{
+  "viajes": [
+    {
+      "patente": "15151515",
+      "valorViaje": 8000,
+      "destino": {
+        "lat": -33.601036,
+        "lng": -70.5777916,
+        "direccion": "Plazuela de Puente Alto, Puente Alto, Chile"
+      },
+      "cantidadPasajeros": 2,
+      "estado": "activo",
+      "conductor": 1700266631583,
+      "id": 1700281439708,
+      "pasajeros": [
+        7145172584,
+        7145172584
+      ]
+    },
+    {
+      "patente": "161616",
+      "valorViaje": 10000,
+      "destino": {
+        "lat": -34.9994546,
+        "lng": -71.2486533,
+        "direccion": "Los Niches, Curicó, Chile"
+      },
+      "cantidadPasajeros": 4,
+      "estado": "activo",
+      "conductor": 1700266631583,
+      "pasajeros": [
+        7145172584
+      ],
+      "id": 1700283578767
+    }
+  ],
+  "usuarios": [
+    {
+      "id": 7145172584,
+      "nombre": "Paco",
+      "email": "pasajero@duoc.cl",
+      "pass": "1234",
+      "conductor": false,
+      "esperando": false
+    },
+    {
+      "nombre": "Hei",
+      "email": "conductor@duoc.cl",
+      "pass": "123",
+      "conductor": true,
+      "id": 1700266631583
+    }
+  ]
+}

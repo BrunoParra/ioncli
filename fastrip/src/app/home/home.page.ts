@@ -49,8 +49,11 @@ export class HomePage{
 
   }
 
-  async ngOnInit() {
-    this.usuario = await this.serviceRegistro.obtenerUsuario()
+  ngOnInit() {
+    setTimeout(async () => {
+      this.usuario = await this.serviceRegistro.getUsuarioLogeado()
+      console.log(this.usuario)
+    }, 500);
   }
 
   mostrarMenu(){

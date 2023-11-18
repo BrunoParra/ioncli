@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import { RegistroserviceService, Usuario } from '../../services/registroservice.service';
+import { RegistroserviceService, User } from '../../services/registroservice.service';
 import { ToastController } from '@ionic/angular';
 
 import {
@@ -18,7 +18,7 @@ import {
 export class RegistroPage implements OnInit {
 
   formularioRegistro: FormGroup;
-  newUsuario: Usuario = <Usuario>{};
+  newUsuario: User = <User>{};
 
   constructor(private registroService: RegistroserviceService,
     private alertController: AlertController,
@@ -37,12 +37,12 @@ export class RegistroPage implements OnInit {
 
   }
   public CrearUsuario() {
-    this.newUsuario.nomUsuario = this.formularioRegistro.value.nombre
-    this.newUsuario.correoUsuario = this.formularioRegistro.value.correo
-    this.newUsuario.passUsuario = this.formularioRegistro.value.password
-    this.newUsuario.repassUsuario = this.formularioRegistro.value.confirmaPass
-    this.newUsuario.rol = this.formularioRegistro.value.rol
+    if(this.formularioRegistro.value.password == this.formularioRegistro.value.confirmaPass)
+    this.newUsuario.nombre = this.formularioRegistro.value.nombre
+    this.newUsuario.email = this.formularioRegistro.value.correo
+    this.newUsuario.pass = this.formularioRegistro.value.password
+    this.newUsuario.conductor = this.formularioRegistro.value.rol=='conductor'
     console.log(this.newUsuario)
-    this.registroService.addDatos(this.newUsuario)
+    this.registroService.createUsuario(this.newUsuario)
   }
 }

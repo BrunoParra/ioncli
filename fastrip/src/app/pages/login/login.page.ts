@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
-import { RegistroserviceService, Usuario } from '../../services/registroservice.service';
+import { RegistroserviceService, User } from '../../services/registroservice.service';
 import {
   FormGroup,
   FormControl,
@@ -32,36 +32,34 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  async Ingresar(){
+  async Ingresar() {
     var f = this.formularioLogin.value;
     var a = 0;
-    this.registroService.getUsuarios().then(datos=>{
-      this.usuarios=datos;
-      if (datos.length==0)
-      {
-        return this.usuarios;
-      }
-    if(this.formularioLogin.valid){
-      for (let obj of this.usuarios){
-        if (obj.correoUsuario == f.correo && obj.passUsuario == f.password){
-          a=1;
-          console.log('ingresado');
-          localStorage.setItem('ingresado', 'true');
-          localStorage.setItem('useremail', obj.correoUsuario);
-          this.navController.navigateRoot('home');
-          return;
-        }
-        }
-      
-      console.log(a);
-      if (a==0){
-        this.alertMsg();
-      }
-    }else{
+    const datos = await this.registroService.getUsuarios();
+    this.usuarios = datos;
+    if (datos.length == 0) {
+      return this.usuarios;
+    }
+    if (!this.formularioLogin.valid) {
       console.log('alo kike')
     }
-  });
-}
+    for (let obj of this.usuarios) {
+      console.log(obj)
+      if (obj.email == f.correo && obj.pass == f.password) {
+        a = 1;
+        localStorage.setItem('ingresado', 'true');
+        localStorage.setItem('useremail', obj.email);
+        localStorage.setItem('sesion',JSON.stringify(obj));
+        console.log(obj.email)
+        await this.navController.navigateRoot('home');
+        return;
+      }
+    }
+  
+    if (a == 0) {
+      this.alertMsg();
+    }
+  }
 
   async alertMsg(){
     const alert = await this.alertController.create({

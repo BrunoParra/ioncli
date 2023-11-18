@@ -36,6 +36,16 @@ export class AppComponent {
       name: 'Registro',
       redirecTo: '/registro'
     },
+    {
+      icon: 'paw-outline',
+      name: 'Datos del Viaje',
+      redirecTo: '/form-prestar'
+    },
+    {
+      icon: 'sunny-outline',
+      name: 'Mapa',
+      redirecTo: '/esperando-pasajero'
+    }
   ]
   constructor(private serviceRegistro: RegistroserviceService, private router: Router) {}
 

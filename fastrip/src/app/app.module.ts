@@ -13,6 +13,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { Drivers } from '@ionic/storage'
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 const routes: AppRoutingModule = [
@@ -39,6 +40,7 @@ const routes: AppRoutingModule = [
         driverOrder: [Drivers.IndexedDB, Drivers.LocalStorage]
       }
     ),
+    HttpClientModule,
    ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

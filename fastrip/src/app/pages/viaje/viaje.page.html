@@ -1,0 +1,47 @@
+<ion-content>
+  <div id="container">
+    <div class="hamburguesa">
+      <ion-menu-button color="dark"></ion-menu-button>
+    </div>
+    <div #map class="mapa"></div>
+    <div class="inferior">
+      <div class="encabezado-conductor">
+        <img src="\assets\imgs\avatar.svg" alt="">
+        <h2>{{userViaje.nombre}}</h2>
+
+        <div class="btn-chat">
+          <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+        </div>
+        <div class="btn-cancel" (click)="volver()">
+          <ion-icon name="close-circle-outline"></ion-icon>
+        </div>
+      </div>
+      <div class="container-input-sup">
+        <div class="simbolo">
+          <div class="linea"></div>
+        </div>
+        <form action="">
+          <ion-item>
+            <ion-label>Desde: Duoc Maipu</ion-label>
+          </ion-item>
+          <ion-item *ngIf="cargado">
+            <ion-label>Hasta: {{dataViaje.destino.direccion}}</ion-label>
+          </ion-item>
+        </form>
+      </div>
+      <div class="info-conductor">
+        <div class="info-detalle">
+          <div>
+            <p><strong>Valor</strong></p>
+            <p>${{dataViaje.valorViaje}}</p>
+          </div>
+          <div>
+            <p><strong>Patente</strong></p>
+            <p>{{dataViaje.patente}}</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ion-content>
