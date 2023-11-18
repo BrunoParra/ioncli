@@ -22,7 +22,15 @@ const routes: Routes = [
   { 
     path: 'registro',
      loadChildren: () => import('./pages/registro/registro.module').then(m => m.RegistroPageModule) 
+  },  {
+    path: 'perfil',
+    loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
   },
+  {
+    path: 'auto',
+    loadChildren: () => import('./pages/auto/auto.module').then( m => m.AutoPageModule)
+  },
+
   
 ];
 

@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { RegistroserviceService } from './services/registroservice.service';
 
-
+interface Componente{
+  icon:string;
+  name:string;
+  redirecTo:string;
+}
 
 @Component({
   selector: 'app-root',
@@ -12,6 +16,40 @@ import { RegistroserviceService } from './services/registroservice.service';
 export class AppComponent {
 
   
-  constructor(private router: Router) {}
+  componentes : Componente[] = [
+    
+    {
+      icon: 'speedometer-outline',
+      name: 'Conductores verificados',
+      redirecTo: '/auto'
+    },
+    
+    {
+      icon: 'happy-outline',
+      name: 'About-us',
+      redirecTo: '/about'
+    },
+  ]
+
+
+  constructor(
+    private router: Router,
+     private route: ActivatedRoute,
+     private serviceRegistro: RegistroserviceService) {}
+
+
+
+  
+  shouldShowTabs() {
+    const currentRoute = this.router.url;
+
+    const excludedRoutes = ['/home', '/registro'];
+  
+    return !excludedRoutes.some(route => currentRoute.includes(route));
+  }
+  logOut(){
+    this.serviceRegistro.logOut()
+    this.router.navigate(['/home']);
+  }
 
 }

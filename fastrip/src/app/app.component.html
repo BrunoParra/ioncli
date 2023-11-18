@@ -1,4 +1,46 @@
 <ion-app>
+  <ion-menu side="start" menuId="first" contentId="main" *ngIf="shouldShowTabs()">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-buttons slot="end">
+          <ion-menu-toggle auto-hide="false">
+            <ion-icon name="arrow-back-outline" size="large"></ion-icon>
+          </ion-menu-toggle>
+        </ion-buttons>
+        <ion-title>Menú</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+      <ion-menu-toggle *ngFor="let c of componentes">
+        <ion-item [routerLink]="c.redirecTo" detail="true">
+          <ion-icon [name]="c.icon" slot="start" color="primary"></ion-icon>
+            {{c.name}}
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-item (click)="logOut()">Cerrar Sesión</ion-item>
+      </ion-list>
+    </ion-content>      
+  </ion-menu>
   
   <ion-router-outlet id="main"></ion-router-outlet>
+
+
+
+
+  <ion-tabs *ngIf="shouldShowTabs()">
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="/inicio">
+        <ion-icon name="home-outline"></ion-icon>        
+        Inicio
+      </ion-tab-button>
+      
+      <ion-tab-button tab="/perfil">
+        <ion-icon name="happy-outline"></ion-icon>
+        Perfil
+      </ion-tab-button>
+
+    </ion-tab-bar>
+  </ion-tabs>
+  <ion-router-outlet id="main" *ngIf="shouldShowTabs() === false"></ion-router-outlet>
 </ion-app>

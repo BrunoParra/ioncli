@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
+
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
@@ -13,13 +14,14 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { Drivers } from '@ionic/storage'
+import { FormsModule } from '@angular/forms';
 
 
 const routes: AppRoutingModule = [
-  { path: '', redirectTo: '/pages/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/pages/home', pathMatch: 'full' },
   { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomePageModule) },
   { path: 'about', loadChildren: () => import('./pages/about-us/about-us.module').then(m => m.AboutUsPageModule) },
-  { path: 'login', loadChildren: () => import('./pages/inicio/inicio.module').then(m => m.InicioPageModule) },
+  { path: 'inicio', loadChildren: () => import('./pages/inicio/inicio.module').then(m => m.InicioPageModule) },
   { path: 'registro', loadChildren: () => import('./pages/registro/registro.module').then(m => m.RegistroPageModule) },
 
 ];
@@ -27,7 +29,8 @@ const routes: AppRoutingModule = [
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule, 
+    BrowserModule,
+    FormsModule,
     IonicModule.forRoot(), 
     AppRoutingModule, 
     AngularFireModule.initializeApp(environment.firebaseConfig),
