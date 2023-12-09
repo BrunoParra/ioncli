@@ -39,6 +39,15 @@ const routes: Routes = [
     path: 'buscar-conductor',
     loadChildren: () => import('./pages/buscar-conductor/buscar-conductor.module').then( m => m.BuscarConductorPageModule)
   },
+  {
+    path: 'viajes-activos',
+    loadChildren: () => import('./pages/viajes-activos/viajes-activos.module').then( m => m.ViajesActivosPageModule)
+  },
+  {
+    path: 'recuperar',
+    loadChildren: () => import('./pages/recuperar/recuperar.module').then( m => m.RecuperarPageModule)
+  },
+
   
 ];
 

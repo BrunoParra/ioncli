@@ -4,25 +4,25 @@
       <ion-menu-button color="dark"></ion-menu-button>
     </div>
     <div class="map" #map></div>
-    <div class="inferior">
+    <div *ngIf="cargado" class="inferior">
       <div class="encabezado-conductor">
         <img src="/assets/icon/avatar-placeholder.png" alt="">
-        <h2 *ngIf="cargado">{{sesion.nombre}}</h2>
-        <div class="btn-cancel" (click)="volver()">
+        <h2 *ngIf="cargado">{{conductor}}</h2>
+        <div *ngIf="user.conductor" class="btn-cancel" (click)="volver()">
           <ion-icon name="close-circle-outline"></ion-icon>
         </div>
       </div>
     <ion-list>
-      <ion-list-header routerLink="/fin-viaje">
+      <ion-list-header>
           <ion-label>
             <h2>Pasajeros:</h2>
           </ion-label>
       </ion-list-header>
-      <ion-item *ngFor="let f of [].constructor(dataViaje.cantidadPasajeros)">
+      <ion-item *ngFor="let pasajero of pasajeros">
         <ion-avatar>
           <img src="/assets/icon/avatar-placeholder.png" alt="">
         </ion-avatar>
-        <ion-label color="medium">Libre</ion-label>
+        <ion-label color="medium">{{ pasajero }}</ion-label>
       </ion-item>
     </ion-list>
     </div>

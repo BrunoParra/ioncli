@@ -34,37 +34,30 @@ export class LoginPage implements OnInit {
 
   async Ingresar() {
     var f = this.formularioLogin.value;
-    var a = 0;
-    const datos = await this.registroService.getUsuarios();
-    this.usuarios = datos;
-    if (datos.length == 0) {
-      return this.usuarios;
-    }
     if (!this.formularioLogin.valid) {
-      console.log('alo kike')
+      this.alertMsg("Debe ingresar todos los datos");
+      return;
     }
-    for (let obj of this.usuarios) {
-      console.log(obj)
-      if (obj.email == f.correo && obj.pass == f.password) {
-        a = 1;
-        localStorage.setItem('ingresado', 'true');
-        localStorage.setItem('useremail', obj.email);
-        localStorage.setItem('sesion',JSON.stringify(obj));
-        console.log(obj.email)
-        await this.navController.navigateRoot('home');
-        return;
+    try {
+      await this.registroService.login(f.correo, f.password);
+      await this.navController.navigateRoot('home');
+    } catch(error: any) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      if (errorCode === 'auth/wrong-password') {
+        this.alertMsg('Contraseña incorrecta');
+      } else if (errorCode === 'auth/invalid-login-credentials') {
+        this.alertMsg('Credenciales incorrectas');
+      } else {
+        
       }
-    }
-  
-    if (a == 0) {
-      this.alertMsg();
     }
   }
 
-  async alertMsg(){
+  async alertMsg(message?: string){
     const alert = await this.alertController.create({
       header: 'Error..',
-      message:'Los datos ingresados no son correctos',
+      message: message || 'Los datos ingresados no son correctos',
       buttons: ['Aceptar'],
     });
     await alert.present();

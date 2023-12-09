@@ -15,7 +15,7 @@
         <div class="linea"></div>
       </div>
       <form action="">
-        <ion-item fill="outline">
+        <ion-item>
           <ion-input placeholder="Desde Duoc Maipu" disabled></ion-input>
         </ion-item>
         <input placeholder="¿A Donde?" #inputAutocmplt class="autocompletado">
@@ -23,21 +23,17 @@
     </div>
 
     <div class="container-input-inf">
-      <ion-item fill="outline">
-        <ion-label>Patente:</ion-label>
-        <ion-input [(ngModel)]="patente"></ion-input>
+      <ion-item>
+        <ion-input [(ngModel)]="patente" label="Patente" labelPlacement="floating"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>Salida:</ion-label>
-        <ion-input [(ngModel)]="salida"></ion-input>
+        <ion-input [(ngModel)]="salida" label="Salida" labelPlacement="floating"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>Valor:</ion-label>
-        <ion-input [(ngModel)]="valor"></ion-input>
+        <ion-input [(ngModel)]="valor" label="Valor" labelPlacement="floating"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>N° Pasajero</ion-label>
-        <ion-input [(ngModel)]="numPasajeros"></ion-input>
+        <ion-input [(ngModel)]="numPasajeros" label="N° Pasajero" labelPlacement="floating"></ion-input>
       </ion-item>
       <ion-button mode="ios" expand="block" color="tertiary" (click)="agregarViaje()">Agregar Viaje</ion-button>
     </div>

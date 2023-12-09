@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Recuperar Contraseña</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Ingrese correo</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form [formGroup]="formularioRecuperar">
+
+        <ion-item>
+          <ion-input label="Correo" labelPlacement="floating" formControlName="correo"></ion-input>
+        </ion-item>
+      </form>
+      <br>
+      <ion-button (click)="Recuperar()" expand="block" fill="outline" shape="round">
+        Recuperar Contraseña
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,7 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { Viaje, RegistroserviceService } from 'src/app/services/registroservice.service';
+import { Viaje, User, RegistroserviceService } from 'src/app/services/registroservice.service';
 import { GmapService } from 'src/app/services/gmap.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 interface Ubicacion {
@@ -29,16 +30,38 @@ export class EsperandoPasajeroPage implements OnInit {
   markers: any[] = [];
   autocomplete: any;
   destino!: Ubicacion;
-  sesion: any;
   cargado!: boolean;
+  user!: User;
+  pasajeros!: string[];
+  conductor: string = '';
+  idViaje: string = '';
 
-  constructor(private gmaps: GmapService,
-              private api: RegistroserviceService,
-              private navController: NavController) { }
+  constructor(
+    private gmaps: GmapService,
+    private api: RegistroserviceService,
+    private navController: NavController,
+    private route: ActivatedRoute,
+  ) { }
 
 
-  ngOnInit() {
-    this.iniciarTodo();
+  async ngOnInit() {
+    this.idViaje = await this.getViajeId();
+    const user = await this.api.getUsuarioLogeado();
+    if (!user) {
+      this.navController.navigateRoot('/login');
+      return;
+    }
+    this.user = user;
+    await this.traerViaje();
+    await this.cargarServicio();
+    this.loadMap();
+    this.directionsService = new this.googleMaps.DirectionsService();
+    this.directionsRenderer = new this.googleMaps.DirectionsRenderer();
+    this.directionsRenderer.setMap(this.map);
+    this.calcularRuta(this.dataViaje);
+    this.pasajeros = await this.nombrePasajeros();
+    this.conductor = await this.nombreConductor();
+    this.cargado = true;
   }
 
   ngOnDestroy() {
@@ -48,22 +71,21 @@ export class EsperandoPasajeroPage implements OnInit {
     // };
   }
 
-  async iniciarTodo() {
-    this.sesion = JSON.parse(localStorage.getItem('sesion') as string);
-    this.cargado = true;
-    await this.traerViaje();
-    await this.cargarServicio();
-    await this.loadMap();
-    this.directionsService = new this.googleMaps.DirectionsService();
-    this.directionsRenderer = new this.googleMaps.DirectionsRenderer();
-    console.log(this.directionsRenderer)
-    this.directionsRenderer.setMap(this.map);
-    this.calcularRuta(this.dataViaje);
+  getViajeId(): Promise<string> {
+    return new Promise((resolve, reject) => {
+        this.route.queryParamMap.subscribe(params => {
+          const id = params.get('id');
+          if (id) {
+            resolve(id);
+          } else {
+            reject('No se pudo obtener el id del viaje');
+          }
+      });
+    });
   }
 
   async cargarServicio() {
     this.googleMaps = await this.gmaps.loadGoogleMaps();
-    console.log('paso1');
   }
 
   loadMap() {
@@ -100,7 +122,6 @@ export class EsperandoPasajeroPage implements OnInit {
       };
 
       this.map = new this.googleMaps.Map(mapEl, mapconfig);
-      console.log('paso2');
     } catch (e) {
       console.log(e);
     }
@@ -118,14 +139,31 @@ export class EsperandoPasajeroPage implements OnInit {
   }
 
   async traerViaje() {
-    this.dataViaje =(await this.api.getViajeActivoConductor(this.sesion.id))[0];
-    console.log(this.dataViaje);
-    console.log(this.sesion);
+    this.dataViaje = await this.api.getViajesById(this.idViaje);
   }
 
   volver() {
     this.api.setEstadoViaje(this.dataViaje.id as number, 'cancelado');
     this.navController.back();
+  }
+
+  async nombreConductor() {
+    const user = await this.api.getUsuarioByEmail(this.dataViaje.conductor);
+    return user.nombre;
+  }
+
+  async nombrePasajeros() {
+    const nombres = [];
+    for (let i = 0; i < this.dataViaje.cantidadPasajeros; i++) {
+      const email = this.dataViaje.pasajeros[i];
+      if (!email) {
+        nombres.push('Libre');
+        continue;
+      }
+      const user = await this.api.getUsuarioByEmail(email);
+      nombres.push(user.nombre);
+    }
+    return nombres;
   }
 }
 

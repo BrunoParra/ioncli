@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { User, Viaje, RegistroserviceService } from 'src/app/services/registroservice.service';
 import { GmapService } from 'src/app/services/gmap.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-prestar',
@@ -18,13 +19,11 @@ export class FormPrestarPage implements OnInit {
   destino!: { lat: number; lng: number; direccion: string; };
   googleMaps: any;
   autocomplete: any;
-  sesion: any;
   constructor(private gmaps: GmapService,
               private api: RegistroserviceService,
-              private navController: NavController) { }
+              private router: Router) { }
 
   ngOnInit() {
-    this.sesion = JSON.parse(localStorage.getItem('sesion') as string);
     this.borrarViajesInvalidos();
     this.cargarServicio().then(() => {
       this.iniciarAutocompletado();
@@ -54,27 +53,28 @@ export class FormPrestarPage implements OnInit {
   }
 
   async agregarViaje(){
+    const user = await this.api.getUsuarioLogeado();
     this.viaje = {
       patente: this.patente,
       valorViaje: parseInt(this.valor, 10),
       destino: this.destino,
       cantidadPasajeros: parseInt(this.numPasajeros, 10),
       estado: 'activo',
-      conductor: this.sesion.id,
+      conductor: user!.email,
       pasajeros: []
     };
-
     await this.api.createViaje(this.viaje);
-    this.navController.navigateRoot('/esperando-pasajero');
+    await this.router.navigate(['/esperando-pasajero'], { queryParams: { id: this.viaje.id } });
   }
 
   async borrarViajes(){
-    // const idViaje = await this.api.getViajeActivoConductor(this.sesion.id);
+    // const idViaje = await this.api.getViajeActivoConductor(this.ses.email);
     // this.api.setEstadoViaje(idViaje.id, 'cancelado');
   }
 
   async borrarViajesInvalidos(){
-    const idViaje = await this.api.getViajeActivoConductor(this.sesion.id);
+    const user = await this.api.getUsuarioLogeado();
+    const idViaje = await this.api.getViajeActivoConductor(user!.email);
     console.log(idViaje);
 
     if (idViaje) {

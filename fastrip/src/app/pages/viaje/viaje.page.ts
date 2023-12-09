@@ -45,11 +45,11 @@ export class ViajePage implements OnInit {
 
   async iniciarTodo() {
     this.idURL = this.route.snapshot.params['id'];
-    await this.cargarServicio();
-    await this.loadMap();
+    this.cargarServicio();
+    this.loadMap();
 
-    this.dataViaje = await this.api.getViajesById(this.idURL);
-    this.userViaje = await this.api.getUsuarioById(this.dataViaje.conductor);
+    this.dataViaje = await this.api.getViajesById(this.idURL.toString());
+    this.userViaje = await this.api.getUsuarioByEmail(this.dataViaje.conductor);
     this.cargado = true;
     this.directionsService = new this.googleMaps.DirectionsService();
     this.directionsRenderer = new this.googleMaps.DirectionsRenderer();

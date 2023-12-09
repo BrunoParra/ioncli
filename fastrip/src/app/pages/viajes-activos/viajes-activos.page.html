@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Viajes Disponibles</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">viajes-activos</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-card *ngFor="let viaje of viajes">
+    <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+    <ion-card-header>
+      <ion-card-title>Patente: {{viaje.patente}} </ion-card-title>
+      <ion-card-subtitle>Destino: {{viaje.destino.direccion}}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>Valor viaje: {{viaje.valorViaje}}</p>
+      <p>Capacidad: {{viaje.pasajeros.length}} / {{viaje.cantidadPasajeros}}</p>
+      <ion-button [routerLink]="'/esperando-pasajero'" [queryParams]="{id: viaje.id}">Ver viaje</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

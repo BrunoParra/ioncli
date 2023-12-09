@@ -1,5 +1,7 @@
 {
   "name": "fastrip",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

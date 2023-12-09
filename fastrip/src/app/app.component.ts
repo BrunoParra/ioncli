@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { RegistroserviceService } from './services/registroservice.service';
+import { RegistroserviceService, User } from './services/registroservice.service';
 
 interface Componente{
   icon:string;
@@ -36,19 +36,15 @@ export class AppComponent {
       name: 'Registro',
       redirecTo: '/registro'
     },
-    {
-      icon: 'paw-outline',
-      name: 'Datos del Viaje',
-      redirecTo: '/form-prestar'
-    },
-    {
-      icon: 'sunny-outline',
-      name: 'Mapa',
-      redirecTo: '/esperando-pasajero'
-    }
   ]
   constructor(private serviceRegistro: RegistroserviceService, private router: Router) {}
 
+  user?: User;
+
+  async ngOnInit() {
+    this.user = await this.serviceRegistro.getUsuarioLogeado();
+  }
+  
   logOut(){
     this.serviceRegistro.logOut()
     this.router.navigate(['/login']);

@@ -13,10 +13,15 @@
             {{c.name}}
         </ion-item>
       </ion-menu-toggle>
+      <ion-menu-toggle *ngIf="user && user.conductor">
+        <ion-item routerLink="/viajes-activos" detail="true">
+          <ion-icon name="car-outline" slot="start" color="primary"></ion-icon>
+          Viajes Activos
+        </ion-item>
+      </ion-menu-toggle>
       <ion-item (click)="logOut()">Cerrar Sesión</ion-item>
       </ion-list>
     </ion-content>
   </ion-menu>
-  
+
   <ion-router-outlet id="main"></ion-router-outlet>
-</ion-app>

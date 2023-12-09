@@ -37,12 +37,13 @@ export class RegistroPage implements OnInit {
 
   }
   public CrearUsuario() {
-    if(this.formularioRegistro.value.password == this.formularioRegistro.value.confirmaPass)
+    if(this.formularioRegistro.value.password == this.formularioRegistro.value.confirmaPass) {
+
+    }
     this.newUsuario.nombre = this.formularioRegistro.value.nombre
     this.newUsuario.email = this.formularioRegistro.value.correo
     this.newUsuario.pass = this.formularioRegistro.value.password
     this.newUsuario.conductor = this.formularioRegistro.value.rol=='conductor'
-    console.log(this.newUsuario)
     this.registroService.createUsuario(this.newUsuario)
   }
 }
