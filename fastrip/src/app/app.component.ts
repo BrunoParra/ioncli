@@ -47,6 +47,6 @@ export class AppComponent {
   
   logOut(){
     this.serviceRegistro.logOut()
-    this.router.navigate(['/login']);
+    this.router.navigate(['/inicio']);
   }
 }

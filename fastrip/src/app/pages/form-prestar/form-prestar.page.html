@@ -25,16 +25,16 @@
 
       <div class="container-input-inf">
         <ion-item>
-          <ion-input [(ngModel)]="patente" label="Patente" labelPlacement="floating"></ion-input>
+          <ion-input [(ngModel)]="patente" label="Patente" labelPlacement="floating" pattern="^[A-Z]{4}\d{2,3}$" required></ion-input>
         </ion-item>
         <ion-item>
-          <ion-input [(ngModel)]="salida" label="Salida" labelPlacement="floating"></ion-input>
+          <ion-input type="time" [(ngModel)]="salida" label="Salida" labelPlacement="floating" required></ion-input>
         </ion-item>
         <ion-item>
-          <ion-input [(ngModel)]="valor" label="Valor" labelPlacement="floating"></ion-input>
+          <ion-input type="number" [(ngModel)]="valor" label="Valor" labelPlacement="floating" max="100000" required></ion-input>
         </ion-item>
         <ion-item>
-          <ion-input [(ngModel)]="numPasajeros" label="N° Pasajeros" labelPlacement="floating"></ion-input>
+          <ion-input type="number" [(ngModel)]="numPasajeros" label="N° Pasajeros" labelPlacement="floating" max="10" required></ion-input>
         </ion-item>
         <ion-button mode="ios" expand="block" color="tertiary" (click)="agregarViaje()">Agregar Viaje</ion-button>
       </div>

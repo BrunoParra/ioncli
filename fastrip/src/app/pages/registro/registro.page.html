@@ -13,7 +13,7 @@
       <ion-input type="text" label="Nombre" labelPlacement="floating" formControlName="nombre"  pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ]+" minlength="3" maxlength="20" required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="email" label="Correo" labelPlacement="floating" formControlName="correo" pattern="[a-zA-Z]{1,20}@duocuc\.cl" maxlength="35" required></ion-input>
+      <ion-input type="email" label="Correo" labelPlacement="floating" formControlName="correo" pattern="^[a-zA-Z.]{1,20}@duocuc\.cl$" maxlength="35" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-input type="password" label="Contraseña"  labelPlacement="floating" formControlName="password" pattern="[A-Za-z0-9@$!%*?&]{8,20}" minlength="8" maxlength="20" required ></ion-input>
