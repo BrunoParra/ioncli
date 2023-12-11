@@ -25,8 +25,8 @@
   </ion-header>
   <ion-content class="ion-padding">
     <div *ngIf="!loading" class="container">
-      <h1 *ngIf="usuario">Hola {{ usuario.conductor ? "conductor" : "pasajero" }} {{ usuario.nombre}} </h1>
-      <ion-button *ngIf="usuario && !usuario.conductor" routerLink="/buscar-conductor">Buscar un Conductor</ion-button>
+      <h1 *ngIf="usuario">Hola {{ usuario.conductor ? "conductor/a" : "pasajero" }} {{ usuario.nombre}} </h1>
+      <ion-button *ngIf="usuario && !usuario.conductor" routerLink="/buscar-conductor">Buscar un Conductor/a</ion-button>
       <ion-button *ngIf="usuario && usuario.conductor" routerLink="/form-prestar">Ingresar datos del viaje</ion-button>
     </div>
     <div *ngIf="loading" style="display: flex; align-items: center; justify-content: center;" >
