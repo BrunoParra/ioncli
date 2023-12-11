@@ -1,8 +1,28 @@
 <ion-content>
-  <div id="container">
-    <div class="hamburguesa">
-      <ion-menu-button color="dark"></ion-menu-button>
-    </div>
+  <ion-menu contentId="main-content">
+    <ion-header [translucent]="true">
+      <ion-toolbar>
+        <ion-title>Menú</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-list>
+        <ion-item routerLink="/home">Inicio</ion-item>
+        <ion-item routerLink="/about">Acerca de</ion-item>
+        <ion-item routerLink="/login">Login</ion-item>
+        <ion-item routerLink="/registro">Registro</ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <div class="ion-page" id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title style="font-weight: bold;">Información Viaje</ion-title>
+      </ion-toolbar>
+    </ion-header>
     <div class="map" #map></div>
     <div *ngIf="cargado" class="inferior">
       <div class="encabezado-conductor">

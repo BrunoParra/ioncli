@@ -1,0 +1,27 @@
+ion-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Cambia de 'center' a 'flex-start' para alinear en la parte superior */
+    height: 100vh; /* Ajusta la altura del contenido para ocupar toda la altura de la pantalla */
+  }
+  
+  .logo-container {
+    text-align: center;
+    margin-top: 5px; /* Ajusta la distancia desde la parte superior según tus necesidades */
+  }
+  
+  .logo-img {
+    max-width: 80%;
+    max-height: 100%;
+  }
+
+  .welcome-text {
+    text-align: center;
+  }
+  
+  ion-title {
+    font-size: 1.5em; /* Tamaño del texto, puedes ajustar según tus preferencias */
+    font-weight: bold; /* Establece la negrita si lo deseas */
+    margin-top: 70px ;
+    text-align: center;
+  }

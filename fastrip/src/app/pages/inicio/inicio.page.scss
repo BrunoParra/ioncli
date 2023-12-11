@@ -1,9 +1,8 @@
 ion-content {
-    margin-bottom: 0;
     display: flex;
     justify-content: center;
     align-items: flex-start; /* Cambia de 'center' a 'flex-start' para alinear en la parte superior */
-    height: 10vh; /* Ajusta la altura del contenido para ocupar toda la altura de la pantalla */
+    height: 100vh; /* Ajusta la altura del contenido para ocupar toda la altura de la pantalla */
   }
   
   .logo-container {
@@ -12,7 +11,6 @@ ion-content {
   }
   
   .logo-img {
-    max-width: 30%;
-    max-height: 30%;
+    max-width: 100%;
+    max-height: 100%;
   }
-
