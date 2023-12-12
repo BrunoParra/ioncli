@@ -1,39 +1,34 @@
-<ion-header>
-  <ion-toolbar color="secondary">
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>Registro</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="ion-padding" scrollY="false">
+  <div class="logo-container">
+    <img src="assets/icon/icon-nb2.png" alt="Logo de la aplicación" class="logo-img">
+  </div>
 
-<ion-content>
-  <ion-card>
+  <ion-card style="background: none;">
     <ion-card-header>
-      <ion-card-title>Registro</ion-card-title>
+      <ion-card-title style="text-align: center;">Unirse a <br> FASTRIP</ion-card-title>
     </ion-card-header>
   <ion-card-content>
    <form [formGroup] = "formularioRegistro" (keyup.enter)="CrearUsuario()">
     <ion-item>
-      <ion-input label="Nombre" labelPlacement="floating" type="text" formControlName="nombre"></ion-input>
+      <ion-input type="text" label="Nombre" labelPlacement="floating" formControlName="nombre"  pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ]+" minlength="3" maxlength="20" required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="text" formControlName="correo" labelPlacement="floating" label="Email"></ion-input>
+      <ion-input type="email" label="Correo" labelPlacement="floating" formControlName="correo" pattern="^[a-zA-Z.]{1,20}@duocuc\.cl$" maxlength="35" required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="password" formControlName="password" label="Password" labelPlacement="floating"></ion-input>
+      <ion-input type="password" label="Contraseña"  labelPlacement="floating" formControlName="password" pattern="[A-Za-z0-9@$!%*?&]{8,20}" minlength="8" maxlength="20" required ></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="password" formControlName="confirmaPass" label="Confirma password" labelPlacement="floating"></ion-input>
+      <ion-input type="password" formControlName="confirmaPass" label="Confirmar Contraseña" labelPlacement="floating" pattern="[A-Za-z0-9@$!%*?&]{8,20}" minlength="8" maxlength="20" required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-radio-group value="rol" formControlName="rol">
+      <ion-radio-group value="rol" formControlName="rol" required>
         <ion-item>
-          <ion-radio value="conductor">Conductor</ion-radio>
+          <ion-radio value="conductor">Conductor/a</ion-radio>
         </ion-item>
     
         <ion-item>
-          <ion-radio value="pasajero">Pasajero</ion-radio>
+          <ion-radio value="pasajero">Pasajero/a</ion-radio>
         </ion-item>
       </ion-radio-group>
     </ion-item>

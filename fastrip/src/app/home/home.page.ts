@@ -13,16 +13,21 @@ import { RegistroserviceService, User } from '../services/registroservice.servic
 })
 export class HomePage{
   usuario?: User;
+  loading = false;
 
-  //ESTO SIRVE PARA HACER USO DE SERVICIO DE DB
   constructor(
     private menuController: MenuController,
     private serviceRegistro: RegistroserviceService,
   ) {
   }
 
-  async ngOnInit() {
-    this.usuario = await this.serviceRegistro.getUsuarioLogeado()
+  async ionViewDidEnter() {
+    try {
+      this.loading = true;
+      this.usuario = await this.serviceRegistro.getUsuarioLogeado()
+    } finally {
+      this.loading = false;
+    }
   }
 
   mostrarMenu(){
