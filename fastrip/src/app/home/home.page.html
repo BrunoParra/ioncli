@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -42,3 +43,41 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>
+=======
+<ion-menu contentId="main-content" >
+  <ion-header [translucent]="true">
+    <ion-toolbar> 
+      <ion-title>Menú</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <ion-list>
+      <ion-item routerLink="/home">Inicio</ion-item>
+      <ion-item routerLink="/about">Acerca de</ion-item>
+      <ion-item routerLink="/login">Login</ion-item>
+      <ion-item routerLink="/registro">Registro</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+        <ion-title style="font-weight: bold;">FASTRIP</ion-title>
+        <ion-img slot="end" src="./assets/icon/icon-nb.png"></ion-img>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <div *ngIf="!loading" class="container">
+      <h1 *ngIf="usuario">Hola {{ usuario.conductor ? "conductor(a)" : "pasajero" }} {{ usuario.nombre}} </h1>
+      <ion-button *ngIf="usuario && !usuario.conductor" routerLink="/buscar-conductor">Buscar un Conductor(a)</ion-button>
+      <ion-button *ngIf="usuario && usuario.conductor" routerLink="/form-prestar">Ingresar datos del viaje</ion-button>
+    </div>
+    <div *ngIf="loading" style="display: flex; align-items: center; justify-content: center;" >
+      <ion-spinner ></ion-spinner>
+    </div>
+  </ion-content>
+</div>
+>>>>>>> Stashed changes
